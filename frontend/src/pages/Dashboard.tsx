@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">Executive Dashboard</h1>
           <div className="flex items-center space-x-2 bg-success-100 dark:bg-success-900/20 text-success-800 dark:text-success-400 px-3 py-1 rounded-full text-sm font-medium">
             <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
-            <span>LIVE DASHBOARD</span>
+            <span>MINDX</span>
           </div>
         </div>
         <div className="flex items-center space-x-4">
@@ -86,10 +86,10 @@ const Dashboard: React.FC = () => {
           {/* Market Overview - Wider */}
           <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">نظرة عامة على السوق</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Market Overview</h3>
               <div className="flex items-center space-x-2 bg-success-100 dark:bg-success-900/20 text-success-800 dark:text-success-400 px-3 py-1.5 rounded-full text-sm font-medium">
                 <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
-                <span>مباشر</span>
+                <span>LIVE</span>
               </div>
             </div>
             <div className="space-y-4">
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">S</div>
                   <div>
                     <p className="font-semibold text-lg text-gray-900 dark:text-white">S&P 500</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">الحجم: 2.1B</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Volume: 2.1B</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -112,7 +112,7 @@ const Dashboard: React.FC = () => {
                   <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">N</div>
                   <div>
                     <p className="font-semibold text-lg text-gray-900 dark:text-white">NASDAQ</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">الحجم: 1.8B</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Volume: 1.8B</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -126,7 +126,7 @@ const Dashboard: React.FC = () => {
                   <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">D</div>
                   <div>
                     <p className="font-semibold text-lg text-gray-900 dark:text-white">Dow Jones</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">الحجم: 890M</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Volume: 890M</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -141,40 +141,40 @@ const Dashboard: React.FC = () => {
           <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/30 dark:to-primary-800/30 p-8 rounded-3xl border border-primary-200 dark:border-primary-800 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center space-x-3 mb-6">
               <Zap className="w-8 h-8 text-primary-600" />
-              <h3 className="text-2xl font-bold text-primary-900 dark:text-primary-100">رؤى الذكاء الاصطناعي</h3>
-              <div className="bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium">ذكي</div>
+              <h3 className="text-2xl font-bold text-primary-900 dark:text-primary-100">AI Insights</h3>
+              <div className="bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium">SMART</div>
             </div>
             <div className="space-y-4">
               <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-primary-200 dark:border-primary-700 hover:shadow-lg transition-all">
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">يُنصح بإعادة توازن المحفظة للربع الأول 2024</p>
-                <button className="text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors">عرض التفاصيل ←</button>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">Portfolio rebalancing recommended for Q1 2024</p>
+                <button className="text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors">View Details →</button>
               </div>
               <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-primary-200 dark:border-primary-700 hover:shadow-lg transition-all">
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">تم تحديد فرصة لتحسين الضرائب</p>
-                <button className="text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors">جدولة مكالمة ←</button>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">Tax optimization opportunity identified</p>
+                <button className="text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors">Schedule Call →</button>
               </div>
             </div>
           </div>
 
           {/* Account Summary - Wider */}
           <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">ملخص الحسابات</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Account Summary</h3>
             <div className="space-y-5">
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">الحساب الجاري</span>
+                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">Current Account</span>
                 <span className="font-bold text-xl text-gray-900 dark:text-white">$125,430.50</span>
               </div>
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">حساب التوفير</span>
+                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">Savings Account</span>
                 <span className="font-bold text-xl text-gray-900 dark:text-white">$2,847,920.75</span>
               </div>
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">الاستثمارات</span>
+                <span className="text-gray-600 dark:text-gray-400 font-medium text-lg">Investments</span>
                 <span className="font-bold text-xl text-gray-900 dark:text-white">$8,456,789.25</span>
               </div>
               <hr className="my-4 border-gray-200 dark:border-gray-700" />
               <div className="flex justify-between items-center py-2">
-                <span className="font-bold text-xl text-gray-900 dark:text-white">صافي الثروة</span>
+                <span className="font-bold text-xl text-gray-900 dark:text-white">Net Worth</span>
                 <span className="font-bold text-3xl text-success-600">$11,430,140.50</span>
               </div>
             </div>

@@ -28,13 +28,13 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             </div>
             <div>
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-banking-900 via-primary-800 to-banking-700 dark:from-white dark:via-primary-200 dark:to-banking-200 bg-clip-text text-transparent">
-                Elite Banking Suite
+                MINDX
               </h1>
               <div className="flex items-center gap-2">
-                <p className="text-xs text-banking-500 dark:text-banking-400 hidden sm:block font-medium">Professional Financial Management</p>
+                <p className="text-xs text-banking-500 dark:text-banking-400 hidden sm:block font-medium">MINDX</p>
                 <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 bg-success-100 dark:bg-success-900/20 rounded-full">
                   <div className="w-1.5 h-1.5 bg-success-500 rounded-full"></div>
-                  <span className="text-xs text-success-600 dark:text-success-400 font-semibold">LIVE</span>
+                  <span className="text-xs text-success-600 dark:text-success-400 font-semibold">MINDX</span>
                 </div>
               </div>
             </div>
