@@ -57,50 +57,49 @@ const renderCustomizedLabel = (props: any) => {
 
 const ExpenseChart: React.FC = () => {
   return (
-    <div className="w-full flex flex-col gap-6">
-      <div className="flex flex-col lg:flex-row gap-6 w-full">
+    <div className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Financial Performance */}
-        <div className="bg-white p-6 rounded-2xl shadow flex-1 flex flex-col items-center min-w-[320px]">
-          <h3 className="text-xl font-bold text-banking-900 dark:text-white mb-4 text-center">Financial Performance</h3>
-          <div className="h-72 w-full">
+        <div className="bg-white p-4 rounded-xl shadow border border-gray-100">
+          <h3 className="text-lg font-bold mb-2">Financial Performance</h3>
+          <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+              <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.3} />
-                <XAxis dataKey="month" stroke="#64748b" fontSize={12} fontWeight={500} />
-                <YAxis stroke="#64748b" fontSize={12} fontWeight={500}
+                <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
+                <YAxis stroke="#64748b" fontSize={11}
                   tickFormatter={value => `$${(value / 1000).toFixed(0)}K`}
                 />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#ffffff',
                     border: '1px solid #e2e8f0',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     color: '#1e293b'
                   }}
                   formatter={(value: any) => [`$${(value / 1000).toFixed(0)}K`, '']}
                   labelStyle={{ fontWeight: 'bold' }}
                 />
-                <Bar dataKey="revenue" fill="#22c55e" radius={[6, 6, 0, 0]} name="Revenue" />
-                <Bar dataKey="expenses" fill="#f59e0b" radius={[6, 6, 0, 0]} name="Expenses" />
-                <Bar dataKey="investment" fill="#3b82f6" radius={[6, 6, 0, 0]} name="Investment" />
+                <Bar dataKey="revenue" fill="#22c55e" radius={[4, 4, 0, 0]} name="Revenue" />
+                <Bar dataKey="expenses" fill="#f59e0b" radius={[4, 4, 0, 0]} name="Expenses" />
+                <Bar dataKey="investment" fill="#3b82f6" radius={[4, 4, 0, 0]} name="Investment" />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Portfolio Growth */}
-        <div className="bg-white p-6 rounded-2xl shadow flex-1 flex flex-col items-center min-w-[320px]">
-          <div className="flex items-center justify-between w-full mb-2">
-            <h3 className="text-xl font-bold text-banking-900 dark:text-white">Portfolio Growth</h3>
-            <div className="flex items-center gap-2 px-3 py-1 bg-success-50 dark:bg-success-900/20 rounded-full">
-              <div className="w-2 h-2 bg-success-500 rounded-full"></div>
-              <span className="text-sm font-semibold text-success-600 dark:text-success-400">+12.5% YTD</span>
+        <div className="bg-white p-4 rounded-xl shadow border border-gray-100">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-lg font-bold">Portfolio Growth</h3>
+            <div className="flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 rounded-full text-xs font-medium">
+              <span>+12.5% YTD</span>
             </div>
           </div>
-          <div className="h-72 w-full">
+          <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={portfolioData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+              <AreaChart data={portfolioData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="portfolioGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
@@ -108,16 +107,16 @@ const ExpenseChart: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.3} />
-                <XAxis dataKey="month" stroke="#64748b" fontSize={12} fontWeight={500} />
-                <YAxis stroke="#64748b" fontSize={12} fontWeight={500}
+                <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
+                <YAxis stroke="#64748b" fontSize={11}
                   tickFormatter={value => `$${(value / 1000000).toFixed(1)}M`}
                 />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#ffffff',
                     border: '1px solid #e2e8f0',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     color: '#1e293b'
                   }}
                   formatter={(value: any) => [`$${(value / 1000000).toFixed(2)}M`, 'Portfolio Value']}
@@ -126,7 +125,7 @@ const ExpenseChart: React.FC = () => {
                   type="monotone"
                   dataKey="value"
                   stroke="#3b82f6"
-                  strokeWidth={3}
+                  strokeWidth={2}
                   fill="url(#portfolioGradient)"
                 />
               </AreaChart>
@@ -135,48 +134,52 @@ const ExpenseChart: React.FC = () => {
         </div>
 
         {/* Spending Breakdown */}
-        <div className="bg-white p-6 rounded-2xl shadow flex-1 flex flex-col items-center min-w-[320px]">
-          <h3 className="text-xl font-bold text-banking-900 dark:text-white mb-4">Spending Breakdown</h3>
-          <ResponsiveContainer width={220} height={180}>
-            <PieChart>
-              <Pie
-                data={expenseCategories}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-                fill="#8884d8"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                isAnimationActive
-              >
-                {expenseCategories.map((_, idx) => (
-                  <Cell key={`cell-${idx}`} fill={pieColors[idx % pieColors.length]} />
-                ))}
-              </Pie>
-              <Tooltip
-                formatter={(value: any, name: string) =>
-                  [`$${value.toLocaleString()}`, name]
-                }
-                contentStyle={{
-                  backgroundColor: '#fff',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '12px',
-                  color: '#1e293b',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
-                }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="w-full flex flex-wrap justify-center mt-3">
-            {expenseCategories.map((cat, idx) => (
-              <div key={cat.name} className="flex items-center gap-1 mx-3 my-1">
-                <span className="inline-block w-3 h-3 rounded-full" style={{background: pieColors[idx % pieColors.length]}} />
-                <span className="text-xs" style={{color: pieColors[idx % pieColors.length]}}>{cat.name}</span>
-              </div>
-            ))}
+        <div className="bg-white p-4 rounded-xl shadow border border-gray-100">
+          <h3 className="text-lg font-bold mb-2">Spending Breakdown</h3>
+          <div className="flex flex-col items-center">
+            <div className="h-64 w-full flex justify-center">
+              <ResponsiveContainer width={180} height={180}>
+                <PieChart>
+                  <Pie
+                    data={expenseCategories}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={40}
+                    outerRadius={70}
+                    fill="#8884d8"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    isAnimationActive
+                  >
+                    {expenseCategories.map((_, idx) => (
+                      <Cell key={`cell-${idx}`} fill={pieColors[idx % pieColors.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: any, name: string) =>
+                      [`$${value.toLocaleString()}`, name]
+                    }
+                    contentStyle={{
+                      backgroundColor: '#fff',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '8px',
+                      color: '#1e293b',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="w-full grid grid-cols-3 gap-1 mt-1">
+              {expenseCategories.map((cat, idx) => (
+                <div key={cat.name} className="flex items-center gap-1 text-xs">
+                  <span className="inline-block w-2 h-2 rounded-full" style={{background: pieColors[idx % pieColors.length]}} />
+                  <span style={{color: pieColors[idx % pieColors.length]}}>{cat.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

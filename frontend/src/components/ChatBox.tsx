@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 interface Message {
   id: string;
@@ -9,6 +10,9 @@ interface Message {
 }
 
 const ChatBox: React.FC = () => {
+  // استخدام سياق المصادقة للحصول على معلومات المستخدم
+  const { user } = useAuth();
+  
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -61,6 +65,7 @@ const ChatBox: React.FC = () => {
           messages: apiMessages,
           // You can add user context here if needed
           user_context: {
+            username: user?.username,
             // Example: financial data that could be passed to the AI
             // income: 5000,
             // expenses: 3000,
@@ -105,7 +110,9 @@ const ChatBox: React.FC = () => {
   return (
     <div className="bg-white dark:bg-banking-800 rounded-xl shadow-banking border border-banking-200 dark:border-banking-700 flex flex-col h-96">
       <div className="p-4 border-b border-banking-200 dark:border-banking-700">
-        <h3 className="text-lg font-semibold text-banking-900 dark:text-white">AI Financial Assistant</h3>
+        <h3 className="text-lg font-semibold text-banking-900 dark:text-white">
+          Welcome, {user?.firstName || 'Guest'} - AI Financial Assistant
+        </h3>
       </div>
       
       <div className="flex-1 overflow-y-auto p-4 space-y-4">

@@ -39,61 +39,63 @@ const cards = [
     value: "$2,847,392.50",
     sublabel: "Across all accounts",
     change: "+12.5%",
-    color: "bg-blue-100 text-blue-700",
+    color: "bg-blue-50 text-blue-700 border-blue-200",
   },
   {
     label: "Monthly Income",
     value: "$184,750.00",
     sublabel: "All income sources",
     change: "+8.2%",
-    color: "bg-green-100 text-green-700",
+    color: "bg-green-50 text-green-700 border-green-200",
   },
   {
     label: "Monthly Expenses",
     value: "$67,234.80",
     sublabel: "Optimized spending",
     change: "-3.1%",
-    color: "bg-yellow-100 text-yellow-700",
+    color: "bg-yellow-50 text-yellow-700 border-yellow-200",
   },
   {
     label: "Investment Returns",
     value: "$117,515.20",
     sublabel: "Current year performance",
     change: "+15.7%",
-    color: "bg-purple-100 text-purple-700",
+    color: "bg-purple-50 text-purple-700 border-purple-200",
   },
   {
     label: "Financial Goals",
     value: "85%",
     sublabel: "Goals progress",
     change: "+5.2%",
-    color: "bg-green-100 text-green-700",
+    color: "bg-green-50 text-green-700 border-green-200",
   },
   {
     label: "Financial Health",
     value: "98%",
     sublabel: "Health score",
     change: "+2.1%",
-    color: "bg-blue-100 text-blue-700",
+    color: "bg-blue-50 text-blue-700 border-blue-200",
   },
 ];
 
 export default function DashboardCards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 font-sans">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
       {cards.map((card, idx) => (
         <div
           key={idx}
-          className={`rounded-2xl p-6 shadow ${card.color} flex flex-col justify-between`}
+          className={`rounded-xl p-5 shadow ${card.color} flex flex-col justify-between border hover:shadow-md transition-all duration-300`}
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="bg-white/60 rounded-full p-2 shadow">{cardIcons[idx]}</div>
+            <div className="bg-white/80 rounded-full p-2 shadow-sm">{cardIcons[idx]}</div>
             <div className="text-sm font-medium">{card.label}</div>
           </div>
           <div className="text-3xl font-bold mb-2">{card.value}</div>
           <div className="flex items-center justify-between">
-            <span className="text-xs">{card.sublabel}</span>
-            <span className="text-xs font-semibold">{card.change}</span>
+            <span className="text-xs opacity-80">{card.sublabel}</span>
+            <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
+              card.change.startsWith('+') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}>{card.change}</span>
           </div>
         </div>
       ))}

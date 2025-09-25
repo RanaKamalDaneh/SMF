@@ -3,10 +3,13 @@ import { FlagJordan, BankIcon, UploadIcon, ChatIcon, GeminiIcon } from "../compo
 import DashboardCards from "../components/DashboardCards";
 import ExpenseChart from "../components/ExpenseChart";
 import TransactionPreview from "../components/TransactionPreview";
-
-const user = { name: "Qusai", bank: "Arab Bank" };
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Dashboard() {
+  // استخدام سياق المصادقة للحصول على معلومات المستخدم
+  const { user: authUser } = useAuth();
+  
+  const bank = "Arab Bank";
   const lastUpdated = "2 minutes ago";
   const aiTip = "Gemini AI: Try saving 10 JOD this month by reducing dining out.";
 
@@ -20,17 +23,17 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-6 font-sans">
+    <div className="space-y-4 font-sans p-2">
       {/* 1. Personalized Greeting and Actions */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
+      <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
         <div className="flex items-center gap-3">
           <span className="text-2xl font-bold">
-            Welcome, {user.name}
+            Welcome, {authUser?.firstName || "Guest"}
           </span>
           <FlagJordan />
           <span className="ml-3 flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-lg font-medium text-sm">
             <BankIcon className="w-5 h-5 mr-1" />
-            {user.bank}
+            {bank}
           </span>
         </div>
         <div className="flex gap-2">
@@ -47,19 +50,11 @@ export default function Dashboard() {
       <DashboardCards />
 
       {/* 3. Charts and AI Insights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white rounded-xl p-4 shadow border border-gray-100">
         <ExpenseChart />
-        <div className="bg-white rounded-2xl p-4 shadow flex flex-col justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <GeminiIcon className="w-6 h-6 text-blue-600" />
-              <span className="font-bold">AI Insights</span>
-            </div>
-            <p className="text-gray-700">{aiTip}</p>
-          </div>
-          <div className="mt-4 flex items-center gap-2 text-sm text-gray-400">
-            <span>Updated {lastUpdated}</span>
-            <span>·</span>
+        <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
+          <div>Updated {lastUpdated}</div>
+          <div className="flex items-center gap-1">
             <span>Powered by Google Gemini</span>
           </div>
         </div>
@@ -67,12 +62,6 @@ export default function Dashboard() {
 
       {/* 4. Recent Transactions Preview */}
       <TransactionPreview transactions={mockTransactions} />
-
-      {/* 5. Optional: Alerts */}
-      {/* <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-xl mt-6 text-yellow-800 flex items-center gap-3">
-        <svg className="w-6 h-6" ... />
-        Warning: Your expenses exceed your income this month. Try to reduce spending!
-      </div> */}
     </div>
   );
 }
