@@ -1,6 +1,7 @@
 import React from 'react';
 import { User, Moon, Sun, Menu, Bell, Search, Settings, ChevronDown, Globe, Shield, Zap } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../contexts/AuthContext';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -8,6 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const { isDark, toggleTheme } = useTheme();
+  const { user } = useAuth();
 
   return (
     <header className="bg-white/95 dark:bg-banking-900/95 backdrop-blur-2xl border-b border-banking-200/50 dark:border-banking-700/50 px-4 sm:px-6 py-4 sticky top-0 z-50 shadow-banking">
@@ -87,7 +89,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <div className="flex items-center gap-3 pl-4 border-l border-banking-200 dark:border-banking-700">
             <div className="hidden sm:block text-right">
               <div className="flex items-center gap-2 justify-end mb-1">
-                <p className="text-sm font-bold text-banking-900 dark:text-white">Alexander Morgan</p>
+                <p className="text-sm font-bold text-banking-900 dark:text-white">
+                  {user ? `${user.firstName} ${user.lastName}` : 'Guest User'}
+                </p>
                 <Shield className="w-3 h-3 text-primary-500" />
               </div>
               <div className="flex items-center gap-2 justify-end">
