@@ -44,26 +44,62 @@ const ChatBox: React.FC = () => {
     setInputValue('');
     setIsLoading(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const aiResponses = [
-        "Based on your spending patterns, I recommend setting aside 20% of your income for savings. This aligns with the 50/30/20 budgeting rule.",
-        "I notice you spend a lot on dining out. Consider meal planning to save $200-400 monthly while maintaining your lifestyle.",
-        "Your emergency fund looks healthy! Consider investing excess savings in a diversified portfolio for long-term growth.",
-        "I see opportunities to optimize your subscriptions. You could save $50/month by reviewing unused services.",
-        "Your debt-to-income ratio is good. Focus on paying off high-interest debt first to minimize interest payments."
-      ];
+    try {
+      // Prepare messages for API
+      const apiMessages = messages.concat(userMessage).map(msg => ({
+        content: msg.content,
+        isUser: msg.isUser
+      }));
 
+      // Call our FastAPI backend
+      const response = await fetch('http://localhost:8000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: apiMessages,
+          // You can add user context here if needed
+          user_context: {
+            // Example: financial data that could be passed to the AI
+            // income: 5000,
+            // expenses: 3000,
+            // savings: 20000,
+            // investments: 50000,
+            // goals: ['retirement', 'house']
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response from AI');
+      }
+
+      const data = await response.json();
+      
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: aiResponses[Math.floor(Math.random() * aiResponses.length)],
+        content: data.response,
         isUser: false,
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error('Error communicating with AI:', error);
+      
+      // Fallback response in case of error
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "I'm sorry, I'm having trouble connecting to my financial advice service. Please try again later.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
