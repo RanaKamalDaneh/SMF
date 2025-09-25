@@ -1,128 +1,102 @@
-import React from 'react';
-import { TrendingUp, TrendingDown, DollarSign, CreditCard, PiggyBank, Wallet, ArrowUpRight, ArrowDownRight, Target, Zap, Shield, Globe } from 'lucide-react';
 
-export const DashboardCards: React.FC = () => {
-  const cards = [
-    {
-      title: 'إجمالي قيمة المحفظة',
-      value: '$2,847,392.50',
-      change: '+12.5%',
-      changeValue: '+$327,450',
-      subtitle: 'عبر جميع الحسابات',
-      icon: Wallet,
-      gradient: 'from-primary-600 to-primary-700',
-      bgGradient: 'from-primary-50 via-primary-100 to-primary-50 dark:from-primary-900/30 dark:via-primary-800/30 dark:to-primary-900/30',
-      borderGradient: 'from-primary-200 to-primary-300 dark:from-primary-800 dark:to-primary-700'
-    },
-    {
-      title: 'الدخل الشهري',
-      value: '$184,750.00',
-      change: '+8.2%',
-      changeValue: '+$14,200',
-      subtitle: 'جميع مصادر الدخل',
-      icon: TrendingUp,
-      gradient: 'from-success-600 to-success-700',
-      bgGradient: 'from-success-50 via-success-100 to-success-50 dark:from-success-900/30 dark:via-success-800/30 dark:to-success-900/30',
-      borderGradient: 'from-success-200 to-success-300 dark:from-success-800 dark:to-success-700'
-    },
-    {
-      title: 'المصروفات الشهرية',
-      value: '$67,234.80',
-      change: '-3.1%',
-      changeValue: '-$2,150',
-      subtitle: 'إنفاق محسن',
-      icon: CreditCard,
-      gradient: 'from-warning-600 to-warning-700',
-      bgGradient: 'from-warning-50 via-warning-100 to-warning-50 dark:from-warning-900/30 dark:via-warning-800/30 dark:to-warning-900/30',
-      borderGradient: 'from-warning-200 to-warning-300 dark:from-warning-800 dark:to-warning-700'
-    },
-    {
-      title: 'عوائد الاستثمار',
-      value: '$117,515.20',
-      change: '+15.7%',
-      changeValue: '+$16,350',
-      subtitle: 'أداء العام الحالي',
-      icon: PiggyBank,
-      gradient: 'from-purple-600 to-purple-700',
-      bgGradient: 'from-purple-50 via-purple-100 to-purple-50 dark:from-purple-900/30 dark:via-purple-800/30 dark:to-purple-900/30',
-      borderGradient: 'from-purple-200 to-purple-300 dark:from-purple-800 dark:to-purple-700'
-    },
-    {
-      title: 'الأهداف المالية',
-      value: '85%',
-      change: '+5.2%',
-      changeValue: 'مكتمل',
-      subtitle: 'تقدم الأهداف',
-      icon: Target,
-      gradient: 'from-emerald-600 to-emerald-700',
-      bgGradient: 'from-emerald-50 via-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:via-emerald-800/30 dark:to-emerald-900/30',
-      borderGradient: 'from-emerald-200 to-emerald-300 dark:from-emerald-800 dark:to-emerald-700'
-    },
-    {
-      title: 'الأمان المالي',
-      value: '98%',
-      change: '+2.1%',
-      changeValue: 'ممتاز',
-      subtitle: 'مستوى الحماية',
-      icon: Shield,
-      gradient: 'from-indigo-600 to-indigo-700',
-      bgGradient: 'from-indigo-50 via-indigo-100 to-indigo-50 dark:from-indigo-900/30 dark:via-indigo-800/30 dark:to-indigo-900/30',
-      borderGradient: 'from-indigo-200 to-indigo-300 dark:from-indigo-800 dark:to-indigo-700'
-    }
-  ];
 
+import React from "react";
+
+const cardIcons = [
+  // Portfolio Value
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" />
+    <path d="M12 6v6l4 2" stroke="currentColor" />
+  </svg>,
+  // Income
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path d="M12 19V5m0 0l-7 7m7-7l7 7" stroke="currentColor" />
+  </svg>,
+  // Expenses
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path d="M12 5v14m0 0l-7-7m7 7l7-7" stroke="currentColor" />
+  </svg>,
+  // Investment Returns
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <rect x="3" y="11" width="4" height="10" stroke="currentColor" />
+    <rect x="9" y="7" width="4" height="14" stroke="currentColor" />
+    <rect x="15" y="3" width="4" height="18" stroke="currentColor" />
+  </svg>,
+  // Financial Goals
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" />
+    <path d="M12 8v4l2 2" stroke="currentColor" />
+  </svg>,
+  // Financial Health
+  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path d="M12 21c4.97 0 9-4.03 9-9S16.97 3 12 3 3 7.03 3 12s4.03 9 9 9zm-2-9l2 2 4-4" stroke="currentColor" />
+  </svg>,
+];
+
+const cards = [
+  {
+    label: "Total Portfolio Value",
+    value: "$2,847,392.50",
+    sublabel: "Across all accounts",
+    change: "+12.5%",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    label: "Monthly Income",
+    value: "$184,750.00",
+    sublabel: "All income sources",
+    change: "+8.2%",
+    color: "bg-green-100 text-green-700",
+  },
+  {
+    label: "Monthly Expenses",
+    value: "$67,234.80",
+    sublabel: "Optimized spending",
+    change: "-3.1%",
+    color: "bg-yellow-100 text-yellow-700",
+  },
+  {
+    label: "Investment Returns",
+    value: "$117,515.20",
+    sublabel: "Current year performance",
+    change: "+15.7%",
+    color: "bg-purple-100 text-purple-700",
+  },
+  {
+    label: "Financial Goals",
+    value: "85%",
+    sublabel: "Goals progress",
+    change: "+5.2%",
+    color: "bg-green-100 text-green-700",
+  },
+  {
+    label: "Financial Health",
+    value: "98%",
+    sublabel: "Health score",
+    change: "+2.1%",
+    color: "bg-blue-100 text-blue-700",
+  },
+];
+
+export default function DashboardCards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 animate-fade-in">
-      {cards.map((card, index) => {
-        const Icon = card.icon;
-        const isPositive = card.change.startsWith('+');
-        const changeColor = isPositive ? 'text-success-600 dark:text-success-400' : 'text-danger-600 dark:text-danger-400';
-        const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight;
-
-        return (
-          <div
-            key={index}
-            className={`relative overflow-hidden bg-gradient-to-br ${card.bgGradient} border border-transparent bg-clip-padding rounded-3xl p-10 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-300 group animate-slide-up cursor-pointer hover:scale-105`}
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${card.borderGradient} opacity-20 rounded-3xl`}></div>
-            <div className="relative">
-              <div className="flex items-center justify-between mb-8">
-                <div className={`relative p-4 rounded-2xl bg-gradient-to-br ${card.gradient} shadow-lg shadow-${card.gradient.split('-')[1]}-500/25 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                  <Icon className="w-7 h-7 text-white" />
-                  <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className={`flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-banking-800/80 backdrop-blur-sm ${changeColor} shadow-lg`}>
-                  <TrendIcon className="w-4 h-4" />
-                  <span className="text-sm font-bold">{card.change}</span>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-bold text-banking-600 dark:text-banking-400 mb-1">
-                    {card.title}
-                  </p>
-                  <p className="text-xs text-banking-500 dark:text-banking-400 font-medium">
-                    {card.subtitle}
-                  </p>
-                </div>
-                <p className="text-5xl font-black text-banking-900 dark:text-white tracking-tight group-hover:scale-105 transition-transform duration-300">
-                  {card.value}
-                </p>
-                <div className="flex items-center justify-between">
-                  <p className={`text-sm font-bold ${changeColor} flex items-center gap-1`}>
-                    <Zap className="w-3 h-3" />
-                    {card.changeValue}
-                  </p>
-                  <p className="text-xs text-banking-500 dark:text-banking-400 font-medium">
-                    هذا الشهر
-                  </p>
-                </div>
-              </div>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 font-sans">
+      {cards.map((card, idx) => (
+        <div
+          key={idx}
+          className={`rounded-2xl p-6 shadow ${card.color} flex flex-col justify-between`}
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="bg-white/60 rounded-full p-2 shadow">{cardIcons[idx]}</div>
+            <div className="text-sm font-medium">{card.label}</div>
           </div>
-        );
-      })}
+          <div className="text-3xl font-bold mb-2">{card.value}</div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs">{card.sublabel}</span>
+            <span className="text-xs font-semibold">{card.change}</span>
+          </div>
+        </div>
+      ))}
     </div>
   );
-};
+}
